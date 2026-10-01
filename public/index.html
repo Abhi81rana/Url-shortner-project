@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Abhishek Kumar Rana — My URL Shortner">
+  <title>My URL Shortner — Abhishek Kumar Rana</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">AR</span>
+      <span>My URL Shortner</span>
+    </a>
+    <div class="topbar-right">
+      <span class="status"><i></i> API online</span>
+      <a href="https://github.com/Abhi81rana" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">NODE.JS • EXPRESS • MONGODB • MONGOOSE • NANOID</div>
+      <h1>Short links.<br><span>Clearer data.</span></h1>
+      <p>
+        Create compact URLs, redirect instantly, and track visits with a simple
+        backend-powered workflow.
+      </p>
+    </section>
+
+    <section class="workspace">
+      <div class="card create-card">
+        <div class="card-heading">
+          <div>
+            <span class="card-kicker">01 / CREATE</span>
+            <h2>Turn a long URL into one you can share.</h2>
+          </div>
+          <span class="step-no">01</span>
+        </div>
+
+        <form id="shortenForm" class="form">
+          <label for="url">Destination URL</label>
+          <div class="input-row">
+            <input id="url" name="url" type="url" required placeholder="https://example.com/your-long-link">
+            <button type="submit" id="submitBtn">Shorten URL <span>→</span></button>
+          </div>
+
+          <div class="input-row alias-row">
+            <input id="customAlias" name="customAlias" type="text" maxlength="20" placeholder="Custom alias (optional: mylink)">
+          </div>
+
+          <p id="formMessage" class="message" aria-live="polite"></p>
+        </form>
+
+        <div id="result" class="result hidden">
+          <div class="result-label">YOUR SHORT URL</div>
+          <div class="result-row">
+            <a id="shortUrl" href="#" target="_blank" rel="noopener"></a>
+            <button id="copyBtn" class="secondary-btn" type="button">Copy</button>
+          </div>
+          <div class="result-meta">
+            <span id="destination"></span>
+            <span id="clickCount">0 clicks</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card info-card">
+        <span class="card-kicker">02 / HOW IT WORKS</span>
+        <div class="flow">
+          <div class="flow-item"><b>01</b><span>Validate the destination URL</span></div>
+          <div class="flow-line"></div>
+          <div class="flow-item"><b>02</b><span>Generate a unique short ID</span></div>
+          <div class="flow-line"></div>
+          <div class="flow-item"><b>03</b><span>Store mapping in MongoDB</span></div>
+          <div class="flow-line"></div>
+          <div class="flow-item"><b>04</b><span>Redirect and record visits</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card auth-card">
+      <div class="card-heading compact-heading">
+        <div>
+          <span class="card-kicker">03 / DASHBOARD ACCESS</span>
+          <h2>Login to manage your links</h2>
+        </div>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <input id="username" type="text" placeholder="Username" value="admin" required>
+        <input id="password" type="password" placeholder="Password" value="admin123" required>
+        <button type="submit" class="primary-btn">Login</button>
+      </form>
+
+      <div id="authMessage" class="message" aria-live="polite"></div>
+      <button id="logoutBtn" type="button" class="secondary-btn hidden">Logout</button>
+    </section>
+
+    <section class="recent-panel card">
+      <div class="card-heading compact-heading">
+        <div>
+          <span class="card-kicker">04 / RECENT LINKS</span>
+          <h2>Your latest short URLs</h2>
+        </div>
+      </div>
+      <div id="recentLinks" class="link-list" aria-live="polite">
+        <div class="empty-state">Loading recent links…</div>
+      </div>
+    </section>
+
+    <section id="dashboardPanel" class="card dashboard-card hidden">
+      <div class="card-heading compact-heading">
+        <div>
+          <span class="card-kicker">05 / CONTROL PANEL</span>
+          <h2>Manage your URLs</h2>
+        </div>
+      </div>
+      <div id="dashboardList" class="dashboard-list" aria-live="polite">
+        <div class="empty-state">No dashboard data yet.</div>
+      </div>
+    </section>
+
+    <section class="stats-preview">
+      <div class="section-head">
+        <div>
+          <span class="card-kicker">04 / FEATURES</span>
+          <h2>Built around a clear backend flow.</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><span>01</span>
+          <h3>Short ID generation</h3>
+          <p>Creates an 8-character Nanoid identifier for each destination.</p>
+        </article>
+        <article class="feature-card"><span>02</span>
+          <h3>Redirect handling</h3>
+          <p>Resolves a short ID and redirects the visitor to its original URL.</p>
+        </article>
+        <article class="feature-card"><span>03</span>
+          <h3>Visit history</h3>
+          <p>Stores timestamp, referrer and user-agent information for visits.</p>
+        </article>
+        <article class="feature-card"><span>04</span>
+          <h3>REST API</h3>
+          <p>Separate API endpoints make creation, lookup and statistics easy to test in Postman.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Built by Abhishek Kumar Rana</span>
+    <span>Node.js • Express.js • MongoDB</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
